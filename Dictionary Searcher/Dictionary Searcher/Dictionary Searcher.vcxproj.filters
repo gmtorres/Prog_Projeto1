@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="TODO.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="prodic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
