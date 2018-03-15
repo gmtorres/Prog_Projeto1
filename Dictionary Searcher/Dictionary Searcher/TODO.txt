@@ -1,0 +1,6 @@
+PROCDIC
+
+1. Começar o programa lul.
+2. Fazer a função que lê as palavras.
+3. Fazer a função que guarda as palavras num documento .txt.
+4
