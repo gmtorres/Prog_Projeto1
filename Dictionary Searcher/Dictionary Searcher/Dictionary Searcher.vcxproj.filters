@@ -18,5 +18,13 @@
     <ClCompile Include="prodic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Dicionario.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Dicionario.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
