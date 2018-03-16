@@ -15,16 +15,20 @@ void Dicionario::set_input(std::string str) {
 void Dicionario::set_output(std::string str){
 	output_file_n = str;
 }
-void Dicionario::ler() {
-	in_file.open(input_file_n);
-	if (in_file.is_open()) {
-		std::string palavra;
-		while (in_file >> palavra) {
-			std::cout << palavra << std::endl;
-		}
-	}
+void Dicionario::read() {
+	if (input_file_n.empty())
+		std::cout << "No input file especified." << std::endl;
 	else {
-		std::cout << "Impossivel abrir o ficheiro" << std::endl;
+		in_file.open(input_file_n);
+		if (in_file.is_open()) {
+			std::string palavra;
+			while (in_file >> palavra) {
+				std::cout << palavra << std::endl;
+			}
+		}
+		else {
+			std::cout << "Unable to open " <<input_file_n<< "." << std::endl;
+		}
 	}
 
 }
