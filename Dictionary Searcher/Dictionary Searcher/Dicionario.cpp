@@ -1,13 +1,10 @@
 #include "Dicionario.h"
 
-
 Dicionario::Dicionario(){}
 
 Dicionario::Dicionario(std::string in_f,std::string out_f){
 	input_file_n = in_f;
 	output_file_n = out_f;
-	//in_file.open(input_file_n);
-	//out_file.open(out)
 }
 void Dicionario::set_input(std::string str) {
 	input_file_n = str;
@@ -21,15 +18,12 @@ void Dicionario::read() {
 	else {
 		in_file.open(input_file_n);
 		if (in_file.is_open()) {
-			std::string palavra;
-			while (in_file >> palavra) {
-				//std::cout << palavra << std::endl;
-				if (isValid(palavra)) {
+			std::string linha;
+			while (getline(in_file,linha)) {
+				std::vector<std::string> palavras= get_words(linha);
+				for (size_t i = 0; i < palavras.size(); i++) {
 					simple_words++;
-					if (!exists(palavra)) {
-						unique_words++;
-						words.push_back(palavra);
-					}
+					words.push_back(palavras[i]);
 				}
 			}
 		}
@@ -41,7 +35,7 @@ void Dicionario::read() {
 bool Dicionario::isValid(std::string str) {
 	for (int i = 0; i < str.length(); i++) {
 		int c = int(str[i]);
-		if (c<65 || c>90)
+		if ((c<65 || c>90) && c!=' ' && c != ';' && c != '-' && c!= '\'')
 			return false;
 	}
 	return true;
@@ -62,6 +56,35 @@ size_t  Dicionario::get_nSimple() {
 size_t Dicionario::get_nUnique() {
 	return unique_words;
 }
-
+std::vector<std::string> Dicionario::get_words(std::string str) {
+	std::vector<std::string> palavras;
+	const int n = 3;
+	const char special[n] = { '-','\'',';' };
+	if (isValid(str)) {
+		for (int i = 0; i < str.size(); i++) {
+			for (int a = 0; a < n; a++) {
+				if (str[i] == special[a]) {
+					str[i] = ' ';
+					break;
+				}
+			}
+		}
+		std::string temp = "";
+		for (int i = 0; i < str.size(); i++) {
+			if (str[i] == ' '){
+				if (!temp.empty()) {
+					palavras.push_back(temp);
+					temp = "";
+				}
+			}else {
+				temp += str[i];
+			}
+		}
+		if (!temp.empty()) {
+			palavras.push_back(temp);
+		}
+	}
+	return palavras;
+}
 
 
