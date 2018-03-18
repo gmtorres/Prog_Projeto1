@@ -28,12 +28,32 @@ void Dicionario::read() {
 		in_file.open(input_file_n);
 		if (in_file.is_open()) {
 			std::string linha;
+			char atual = 'A';
+			std::cout << "\nA" << std::endl;
+			int ocorrencias_100 = 0;
+			int outsider = 0;
 			while (getline(in_file,linha)) {
 				if (isValid(linha)) {
 					std::vector<std::string> palavras = get_words(linha);
-					for (size_t i = 0; i < palavras.size(); i++) {
-						simple_words++;
-						words[int(palavras[i][0]-'A')].push_back(palavras[i]);
+					if (palavras.size() > 0) {
+						char prim = palavras[0][0];
+						if (prim == atual+1) {
+							outsider++;
+							if (outsider > 0) {			//set to 0, 1 would also be a good option because then we are more certain that there was no mistake
+								atual = prim;
+								ocorrencias_100 = 0;
+								std::cout << "\n" << atual << std::endl;
+								outsider = 0;
+							}
+						}
+						for (size_t i = 0; i < palavras.size(); i++) {
+							while ((ocorrencias_100+1) * 100 < words[int(atual - 'A')].size()) {
+								std::cout << ".";
+								ocorrencias_100++;
+							}
+							simple_words++;
+							words[int(palavras[i][0] - 'A')].push_back(palavras[i]);
+						}
 					}
 				}
 			}
