@@ -10,11 +10,11 @@ private:
 	std::string input_file_n, output_file_n;
 	std::ifstream in_file;
 	std::ofstream out_file;
-	std::vector<std::string> words;
+	//std::vector<std::string> words;
+	std::vector<std::vector <std::string>> words;
 	size_t simple_words = 0;
 	size_t unique_words = 0;
 
-	bool exists(std::string str); //verifica se uma palavra ja se encontra na lista, true se existir, falso caso não exista
 	std::vector<std::string> get_words(std::string); // dada uma linha de um ficheiro, caso as letras constituintes sejam maiusculas ou caracteres especiais, retorna as palavras constituintes
 	bool isValid(std::string str);// verifica se uma palavra é valida, se nao contem lowercase letras
 

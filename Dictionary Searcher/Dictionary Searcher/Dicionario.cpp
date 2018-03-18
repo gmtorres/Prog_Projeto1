@@ -1,10 +1,19 @@
 #include "Dicionario.h"
 
-Dicionario::Dicionario(){}
+Dicionario::Dicionario(){
+	for (char c = 'A'; c <= 'Z'; c++) {
+		std::vector <std::string> t;
+		words.push_back(t);
+	}
+}
 
 Dicionario::Dicionario(std::string in_f,std::string out_f){
 	input_file_n = in_f;
 	output_file_n = out_f;
+	for (char c = 'A'; c <= 'Z'; c++) {
+		std::vector <std::string> t;
+		words.push_back(t);
+	}
 }
 void Dicionario::set_input(std::string str) {
 	input_file_n = str;
@@ -24,7 +33,7 @@ void Dicionario::read() {
 					std::vector<std::string> palavras = get_words(linha);
 					for (size_t i = 0; i < palavras.size(); i++) {
 						simple_words++;
-						words.push_back(palavras[i]);
+						words[int(palavras[i][0]-'A')].push_back(palavras[i]);
 					}
 				}
 			}
@@ -46,13 +55,8 @@ bool Dicionario::isValid(std::string str) {
 }
 void Dicionario::print() {
 	for (size_t i = 0; i < words.size(); i++)
-		std::cout << words.at(i) << std::endl;
-}
-bool Dicionario::exists(std::string str){
-	for (size_t i = 0; i < words.size(); i++)
-		if (str == words[i])
-			return true;
-	return false;
+		for (size_t ii = 0; ii < words[i].size(); ii++)
+			std::cout << words[i][ii] << std::endl;
 }
 size_t  Dicionario::get_nSimple() {
 	return simple_words;
