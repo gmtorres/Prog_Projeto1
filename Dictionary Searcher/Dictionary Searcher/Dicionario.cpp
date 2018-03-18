@@ -20,12 +20,16 @@ void Dicionario::read() {
 		if (in_file.is_open()) {
 			std::string linha;
 			while (getline(in_file,linha)) {
-				std::vector<std::string> palavras= get_words(linha);
-				for (size_t i = 0; i < palavras.size(); i++) {
-					simple_words++;
-					words.push_back(palavras[i]);
+				if (isValid(linha)) {
+					std::vector<std::string> palavras = get_words(linha);
+					for (size_t i = 0; i < palavras.size(); i++) {
+						simple_words++;
+						words.push_back(palavras[i]);
+					}
 				}
 			}
+			std::cout << std::endl;
+			in_file.close();
 		}
 		else {
 			std::cout << "Unable to open " <<input_file_n<< "." << std::endl;
@@ -60,7 +64,6 @@ std::vector<std::string> Dicionario::get_words(std::string str) {
 	std::vector<std::string> palavras;
 	const int n = 3;
 	const char special[n] = { '-','\'',';' };
-	if (isValid(str)) {
 		for (int i = 0; i < str.size(); i++) {
 			for (int a = 0; a < n; a++) {
 				if (str[i] == special[a]) {
@@ -83,7 +86,6 @@ std::vector<std::string> Dicionario::get_words(std::string str) {
 		if (!temp.empty()) {
 			palavras.push_back(temp);
 		}
-	}
 	return palavras;
 }
 
