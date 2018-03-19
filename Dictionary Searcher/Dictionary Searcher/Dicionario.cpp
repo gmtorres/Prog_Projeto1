@@ -7,6 +7,8 @@ Dicionario::Dicionario(){
 	}
 }
 
+//---------------------------------------------------------------------------------------
+
 Dicionario::Dicionario(std::string in_f,std::string out_f){
 	input_file_n = in_f;
 	output_file_n = out_f;
@@ -15,12 +17,21 @@ Dicionario::Dicionario(std::string in_f,std::string out_f){
 		words.push_back(t);
 	}
 }
+
+//--------------------------------------------------------------------------------------
+
 void Dicionario::set_input(std::string str) {
 	input_file_n = str;
 }
+
+//-----------------------------------------------------------------------------------------
+
 void Dicionario::set_output(std::string str){
 	output_file_n = str;
 }
+
+//----------------------------------------------------------------------------------------
+
 void Dicionario::read() {
 	if (input_file_n.empty())
 		std::cout << "No input file especified." << std::endl;
@@ -65,6 +76,9 @@ void Dicionario::read() {
 		}
 	}
 }
+
+//-------------------------------------------------------------------------------------------------------------------------
+
 bool Dicionario::isValid(std::string str) {
 	for (int i = 0; i < str.length(); i++) {
 		int c = int(str[i]);
@@ -73,22 +87,34 @@ bool Dicionario::isValid(std::string str) {
 	}
 	return true;
 }
+
+//------------------------------------------------------------------------------------------------------------------------
+
 void Dicionario::print() {
 	for (size_t i = 0; i < words.size(); i++)
 		for (size_t ii = 0; ii < words[i].size(); ii++)
 			std::cout << words[i][ii] << std::endl;
 }
+
+//------------------------------------------------------------------------------------------------------------------------
+
 size_t  Dicionario::get_nSimple() {
 	return simple_words;
 }
+
+//---------------------------------------------------------------------------------------------------------------------------
+
 size_t Dicionario::get_nUnique() {
 	return unique_words;
 }
-std::vector<std::string> Dicionario::get_words(std::string str) {
+
+//----------------------------------------------------------------------------------------------------------------------
+
+std::vector<std::string> Dicionario::get_words(std::string str) { // str é uma 'headline' pode conter mais que uma palavra
 	std::vector<std::string> palavras;
 	const int n = 3;
 	const char special[n] = { '-','\'',';' };
-		for (int i = 0; i < str.size(); i++) {
+		for (int i = 0; i < str.size(); i++) { //Substitui os carateres especiais (- , \ , ;) por espaços 
 			for (int a = 0; a < n; a++) {
 				if (str[i] == special[a]) {
 					str[i] = ' ';
@@ -96,10 +122,10 @@ std::vector<std::string> Dicionario::get_words(std::string str) {
 				}
 			}
 		}
-		std::string temp = "";
-		for (int i = 0; i < str.size(); i++) {
-			if (str[i] == ' '){
-				if (!temp.empty()) {
+		std::string temp = ""; //Guarda a palavra antes de a enviar para o vetor
+		for (int i = 0; i < str.size(); i++) { //Percorre a headline toda
+			if (str[i] == ' '){ // Ao encontrar umm espaço envia a palavra para o vetor
+				if (!temp.empty()) { 
 					palavras.push_back(temp);
 					temp = "";
 				}
