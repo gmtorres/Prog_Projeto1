@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <algorithm>
 
 class Dicionario{
 private:
@@ -20,7 +21,7 @@ private:
 
 public:
 	
-	Dicionario();  //Incializar o objeto sem parametros
+	Dicionario();  //Inicializar o objeto sem parametros
 	Dicionario(std::string in_f, std::string out_f); //Inicializar o objeto com os nomes dos ficheiros de entrada e saida
 	void set_input(std::string str); // Atribuir um nome ao ficheiro de entrada
 	void set_output(std::string str); //Atribuir um nome ao ficheiro de saida
@@ -28,6 +29,10 @@ public:
 	void print();	// Mostra no ecra todas a ocorrencias (nao recomendado)
 	size_t get_nSimple();
 	size_t get_nUnique();
+	std::string get_inFile();
+	std::string get_outFile();
+	void ordenar(); // simple sort, making use of the std sort
+	void remove(); // simple remove algorithm making use of the list being sorted, if the list is NOT SORTED the effect will be almost zero
 	
 };
 

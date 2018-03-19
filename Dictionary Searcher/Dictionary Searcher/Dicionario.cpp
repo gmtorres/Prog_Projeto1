@@ -50,7 +50,7 @@ void Dicionario::read() {
 						char prim = palavras[0][0];
 						if (prim == atual+1) {
 							outsider++;
-							if (outsider > 0) {			//set to 0, 1 would also be a good option because then we are more certain that there was no mistake
+							if (outsider > 1) {			//set to 0, 1 would also be a good option because then we are more certain that there was no mistake
 								atual = prim;
 								ocorrencias_100 = 0;
 								std::cout << "\n" << atual << std::endl;
@@ -72,7 +72,7 @@ void Dicionario::read() {
 			in_file.close();
 		}
 		else {
-			std::cout << "Unable to open " <<input_file_n<< "." << std::endl;
+			std::cout << "Unable to open file " <<input_file_n<< " ." << std::endl;
 		}
 	}
 }
@@ -139,4 +139,31 @@ std::vector<std::string> Dicionario::get_words(std::string str) { // str é uma '
 	return palavras;
 }
 
-
+void Dicionario::ordenar() {
+	for (size_t i = 0; i < words.size(); i++)
+		std::sort(words[i].begin(),words[i].end());
+}
+void Dicionario::remove() {
+	for (int a = 0; a < words.size(); a++) {
+		int n = 0;
+		std::string temp = "";
+		for (size_t i = 0; i < words[a].size(); i++) {
+			if (words[a][i] != temp) {
+				temp = words[a][i];
+				words[a][n] = temp;
+				n++;
+			}
+		}
+		words[a].resize(n);
+	}
+	int uw = 0;
+	for (int i = 0; i < words.size(); i++)
+		uw += words[i].size();
+	unique_words = uw;
+}
+std::string Dicionario::get_inFile() {
+	return input_file_n;
+}
+std::string Dicionario::get_outFile() {
+	return output_file_n;
+}
