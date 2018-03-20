@@ -1,6 +1,6 @@
 #include "Dicionario.h"
 
-Dicionario::Dicionario(){
+Dicionario::Dicionario() {
 	for (char c = 'A'; c <= 'Z'; c++) {
 		std::vector <std::string> t;
 		words.push_back(t);
@@ -9,7 +9,7 @@ Dicionario::Dicionario(){
 
 //---------------------------------------------------------------------------------------
 
-Dicionario::Dicionario(std::string in_f,std::string out_f){
+Dicionario::Dicionario(std::string in_f, std::string out_f) {
 	input_file_n = in_f;
 	output_file_n = out_f;
 	for (char c = 'A'; c <= 'Z'; c++) {
@@ -26,7 +26,7 @@ void Dicionario::set_input(std::string str) {
 
 //-----------------------------------------------------------------------------------------
 
-void Dicionario::set_output(std::string str){
+void Dicionario::set_output(std::string str) {
 	output_file_n = str;
 }
 
@@ -43,12 +43,12 @@ void Dicionario::read() {
 			std::cout << "\nA" << std::endl;
 			int ocorrencias_100 = 0;
 			int outsider = 0;
-			while (getline(in_file,linha)) {
+			while (getline(in_file, linha)) {
 				if (isValid(linha)) {
 					std::vector<std::string> palavras = get_words(linha);
 					if (palavras.size() > 0) {
 						char prim = palavras[0][0];
-						if (prim == atual+1) {
+						if (prim == atual + 1) {
 							outsider++;
 							if (outsider > 1) {			//set to 0, 1 would also be a good option because then we are more certain that there was no mistake
 								atual = prim;
@@ -58,7 +58,7 @@ void Dicionario::read() {
 							}
 						}
 						for (size_t i = 0; i < palavras.size(); i++) {
-							while ((ocorrencias_100+1) * 100 < words[int(atual - 'A')].size()) {
+							while ((ocorrencias_100 + 1) * 100 < words[int(atual - 'A')].size()) {
 								std::cout << ".";
 								ocorrencias_100++;
 							}
@@ -72,7 +72,7 @@ void Dicionario::read() {
 			in_file.close();
 		}
 		else {
-			std::cout << "Unable to open file " <<input_file_n<< " ." << std::endl;
+			std::cout << "Unable to open file " << input_file_n << " ." << std::endl;
 		}
 	}
 }
@@ -82,7 +82,7 @@ void Dicionario::read() {
 bool Dicionario::isValid(std::string str) {
 	for (int i = 0; i < str.length(); i++) {
 		int c = int(str[i]);
-		if ((c<65 || c>90) && c!=' ' && c != ';' && c != '-' && c!= '\'')
+		if ((c < 65 || c>90) && c != ' ' && c != ';' && c != '-' && c != '\'')
 			return false;
 	}
 	return true;
@@ -114,34 +114,35 @@ std::vector<std::string> Dicionario::get_words(std::string str) { // str é uma '
 	std::vector<std::string> palavras;
 	const int n = 3;
 	const char special[n] = { '-','\'',';' };
-		for (int i = 0; i < str.size(); i++) { //Substitui os carateres especiais (- , \ , ;) por espaços 
-			for (int a = 0; a < n; a++) {
-				if (str[i] == special[a]) {
-					str[i] = ' ';
-					break;
-				}
+	for (int i = 0; i < str.size(); i++) { //Substitui os carateres especiais (- , \ , ;) por espaços 
+		for (int a = 0; a < n; a++) {
+			if (str[i] == special[a]) {
+				str[i] = ' ';
+				break;
 			}
 		}
-		std::string temp = ""; //Guarda a palavra antes de a enviar para o vetor
-		for (int i = 0; i < str.size(); i++) { //Percorre a headline toda
-			if (str[i] == ' '){ // Ao encontrar umm espaço envia a palavra para o vetor
-				if (!temp.empty()) { 
-					palavras.push_back(temp);
-					temp = "";
-				}
-			}else {
-				temp += str[i];
+	}
+	std::string temp = ""; //Guarda a palavra antes de a enviar para o vetor
+	for (int i = 0; i < str.size(); i++) { //Percorre a headline toda
+		if (str[i] == ' ') { // Ao encontrar umm espaço envia a palavra para o vetor
+			if (!temp.empty()) {
+				palavras.push_back(temp);
+				temp = "";
 			}
 		}
-		if (!temp.empty()) {
-			palavras.push_back(temp);
+		else {
+			temp += str[i];
 		}
+	}
+	if (!temp.empty()) {
+		palavras.push_back(temp);
+	}
 	return palavras;
 }
 
 void Dicionario::ordenar() {
 	for (size_t i = 0; i < words.size(); i++)
-		std::sort(words[i].begin(),words[i].end());
+		std::sort(words[i].begin(), words[i].end());
 }
 
 
@@ -175,13 +176,17 @@ std::string Dicionario::get_outFile() {
 }
 
 void Dicionario::make_out_file() {
-	std::ofstream file ;
+	std::ofstream file;
 	file.open(output_file_n);
-	for (int i = 0; i < words.size(); i++) {
-		for (int j = 0; j < words[i].size(); j++)
-		{
-			file << words[i][j] << '\n';
+	if (file.is_open())
+	{
+		for (int i = 0; i < words.size(); i++) {
+			for (int j = 0; j < words[i].size(); j++)
+			{
+				file << words[i][j] << '\n';
+			}
 		}
+
+		file.close();
 	}
-	file.close();
 }
