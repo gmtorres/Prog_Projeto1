@@ -158,8 +158,9 @@
     <ClInclude Include="Dicionario.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="cona3.txt" />
     <Text Include="Exemplo.txt" />
-    <Text Include="gandaputa.txt" />
+    <Text Include="ficheiro.txt" />
     <Text Include="Text.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

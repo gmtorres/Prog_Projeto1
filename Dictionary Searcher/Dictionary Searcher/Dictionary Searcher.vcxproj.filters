@@ -32,7 +32,10 @@
     <Text Include="Exemplo.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="gandaputa.txt">
+    <Text Include="ficheiro.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="cona3.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
