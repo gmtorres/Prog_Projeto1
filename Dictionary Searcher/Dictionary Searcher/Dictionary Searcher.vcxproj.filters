@@ -29,5 +29,8 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Exemplo.txt" />
+    <Text Include="Text.txt" />
+    <Text Include="gandaputa.txt" />
+    <Text Include="penis.txt" />
   </ItemGroup>
 </Project>

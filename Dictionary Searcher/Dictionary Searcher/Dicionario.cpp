@@ -143,6 +143,8 @@ void Dicionario::ordenar() {
 	for (size_t i = 0; i < words.size(); i++)
 		std::sort(words[i].begin(),words[i].end());
 }
+
+
 void Dicionario::remove() {
 	for (int a = 0; a < words.size(); a++) {
 		int n = 0;
@@ -161,9 +163,25 @@ void Dicionario::remove() {
 		uw += words[i].size();
 	unique_words = uw;
 }
+
+
 std::string Dicionario::get_inFile() {
 	return input_file_n;
 }
+
+
 std::string Dicionario::get_outFile() {
 	return output_file_n;
+}
+
+void Dicionario::make_out_file() {
+	std::ofstream file ;
+	file.open(output_file_n);
+	for (int i = 0; i < words.size(); i++) {
+		for (int j = 0; j < words[i].size(); j++)
+		{
+			file << words[i][j] << '\n';
+		}
+	}
+	file.close();
 }

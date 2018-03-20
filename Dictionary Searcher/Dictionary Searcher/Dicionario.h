@@ -33,6 +33,6 @@ public:
 	std::string get_outFile();
 	void ordenar(); // simple sort, making use of the std sort
 	void remove(); // simple remove algorithm making use of the list being sorted, if the list is NOT SORTED the effect will be almost zero
-	
+	void make_out_file(); //Outputs the result to a txt file
 };
 
