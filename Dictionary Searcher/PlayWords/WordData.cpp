@@ -29,6 +29,11 @@ void WordData::LoadWords()
 	}
 	dic.close();
 }
+
 void WordData::set_inputFile(string str) {
 	input_file = str;
+}
+
+bool WordData::check_Word(string str) {
+
 }
