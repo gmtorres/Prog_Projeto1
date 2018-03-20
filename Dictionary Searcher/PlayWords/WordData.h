@@ -11,7 +11,7 @@ class WordData
 {
 private:
 	vector <vector <string>> words;
-	string input_file = " ";
+	string input_file = "";
 	
 
 
@@ -19,6 +19,7 @@ public:
 	WordData();
 	string getInputf();
 	void LoadWords();
+	void set_inputFile(string str);
 
 
 	//~WordData();

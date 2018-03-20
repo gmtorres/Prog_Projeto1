@@ -4,6 +4,10 @@ using namespace std;
 
 WordData::WordData()
 {
+	for (char c = 'A'; c <= 'Z'; c++) {
+		vector<string> temp;
+		words.push_back(temp);
+	}
 }
 
 string WordData::getInputf()
@@ -14,23 +18,17 @@ string WordData::getInputf()
 void WordData::LoadWords()
 {
 	ifstream dic;
-	int i = 0, j = 0;
-	char c='A';
 	string line;
 	dic.open(getInputf());
 	if (dic.is_open())
 	{
 		while (getline(dic, line))
 		{
-			c = line[0];
-			if (c == line[0])
-			{
-				i = static_cast<int>(line[0]) - 65;
-				j = 0;
-			}
-			WordData::words[i][j].push_back(line);
-			j++;
+			WordData::words[static_cast<int>(line[0]-'A')].push_back(line);
 		}
 	}
 	dic.close();
+}
+void WordData::set_inputFile(string str) {
+	input_file = str;
 }
