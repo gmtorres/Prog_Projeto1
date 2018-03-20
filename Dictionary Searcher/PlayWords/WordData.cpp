@@ -54,6 +54,16 @@ bool binarySearch(const  vector<string>  v, string value) {
 	return true;
 }
 
+void WordData::makeupper(string &str) {
+	for (int i = 0; i < str.length(); i++)
+	{
+		str[i] = toupper(str[i]);
+	}
+}
+
+
+
 bool WordData::check_Word(string str) {
+	makeupper(str);
 	return binarySearch(words[int(str[0] - 'A')], str);
 }

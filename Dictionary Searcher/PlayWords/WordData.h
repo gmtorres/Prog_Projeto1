@@ -21,6 +21,7 @@ public:
 	void LoadWords();
 	void set_inputFile(string str);
 	bool check_Word(string str);
+	void makeupper(string &str);
 
 	//~WordData();
 };
