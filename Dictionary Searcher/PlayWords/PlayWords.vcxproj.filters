@@ -18,5 +18,13 @@
     <ClCompile Include="PlayWords.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="WordData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="WordData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
