@@ -34,6 +34,26 @@ void WordData::set_inputFile(string str) {
 	input_file = str;
 }
 
-bool WordData::check_Word(string str) {
+bool binarySearch(const  vector<string>  v, string value) {
+	int indice=-1;
+	for (int bottom = 0, top = v.size(); bottom <= top;) {
+		int middle = floor((top + bottom) / 2);
+		if (v[middle].compare(value) == 0) {
+			indice = middle;
+			break;
+		}
+		else if (v[middle].compare(value) > 0) {
+			top = middle - 1;
+		}
+		else {
+			bottom = middle + 1;
+		}
+	}
+	if (indice == -1)
+		return false;
+	return true;
+}
 
+bool WordData::check_Word(string str) {
+	return binarySearch(words[int(str[0] - 'A')], str);
 }
