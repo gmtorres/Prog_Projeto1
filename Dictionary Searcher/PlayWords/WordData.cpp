@@ -23,7 +23,7 @@ void WordData::LoadWords()
 		while (getline(dic, line))
 		{
 			WordData::words.push_back(line);
-			for (int i = 0; i < line.length()-1; i++) {
+			for (int i = 0; i < line.length() - 1; i++) {
 				frequency[line[i] - 'A']++;
 			}
 		}
@@ -36,7 +36,7 @@ void WordData::set_inputFile(string str) {
 }
 
 bool binarySearch(const  vector<string>  v, string value) {
-	int indice=-1;
+	int indice = -1;
 	for (size_t bottom = 0, top = v.size(); bottom <= top;) {
 		int middle = floor((top + bottom) / 2);
 		if (v[middle].compare(value) == 0) {
@@ -86,6 +86,8 @@ void WordData::scrambleWord(string &str) {
 	}
 	//return str;
 }
+
+
 vector<char> WordData::give_char(int n) {
 	int sum = 0;
 	vector<char> vec;
@@ -94,10 +96,22 @@ vector<char> WordData::give_char(int n) {
 	for (int i = 0; i < n; i++) {
 		int r = rand() % sum;
 		int c = 0;
-		for (int s = 0; s<r; c++) {
+		for (int s = 0; s < r; c++) {
 			s += frequency[c];
 		}
 		vec.push_back(c + 'A'-1);
 	}
 	return vec;
+}
+
+
+vector<string> WordData::search_word_set(vector<char> chars) {
+	for (int i = 0; i < chars.size(); i++)
+	{
+		
+	}
+}
+
+vector <string> WordData::getWords() {
+	return words;
 }
