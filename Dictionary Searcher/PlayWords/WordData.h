@@ -13,7 +13,6 @@ private:
 	vector <string> words;
 	string input_file = "";
 	
-	string randomWord();
 
 public:
 	WordData();
@@ -22,6 +21,8 @@ public:
 	void set_inputFile(string str);
 	bool check_Word(string str);
 	void makeupper(string &str);
+	string randomWord();
+	void scrambleWord(string &str);
 
 	//~WordData();
 };
