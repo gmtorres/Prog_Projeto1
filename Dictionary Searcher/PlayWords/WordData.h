@@ -11,8 +11,8 @@ class WordData
 {
 private:
 	vector <string> words;
+	vector <int > frequency;
 	string input_file = "";
-	
 
 public:
 	WordData();
@@ -23,6 +23,7 @@ public:
 	void makeupper(string &str);
 	string randomWord();
 	void scrambleWord(string &str);
+	vector<char> give_char(int n);
 	vector<string> search_word_set(vector<char> chars);
 
 	//~WordData();

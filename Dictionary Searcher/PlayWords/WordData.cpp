@@ -4,7 +4,8 @@ using namespace std;
 
 WordData::WordData()
 {
-	
+	for (char c = 'A'; c <= 'Z'; c++)
+		frequency.push_back(0);
 }
 
 string WordData::getInputf()
@@ -22,6 +23,9 @@ void WordData::LoadWords()
 		while (getline(dic, line))
 		{
 			WordData::words.push_back(line);
+			for (int i = 0; i < line.length()-1; i++) {
+				frequency[line[i] - 'A']++;
+			}
 		}
 	}
 	dic.close();
@@ -81,4 +85,19 @@ void WordData::scrambleWord(string &str) {
 		str[r2] = temp;
 	}
 	//return str;
+}
+vector<char> WordData::give_char(int n) {
+	int sum = 0;
+	vector<char> vec;
+	for (int i = 0; i < frequency.size(); i++)
+		sum += frequency[i];
+	for (int i = 0; i < n; i++) {
+		int r = rand() % sum;
+		int c = 0;
+		for (int s = 0; s<r; c++) {
+			s += frequency[c];
+		}
+		vec.push_back(c + 'A');
+	}
+	return vec;
 }
