@@ -23,6 +23,7 @@ public:
 	void makeupper(string &str);
 	string randomWord();
 	void scrambleWord(string &str);
+	vector<string> search_word_set(vector<char> chars);
 
 	//~WordData();
 };
