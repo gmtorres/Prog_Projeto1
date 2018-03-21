@@ -25,6 +25,7 @@ public:
 	void scrambleWord(string &str);
 	vector<char> give_char(int n);
 	vector<string> search_word_set(vector<char> chars);
+	vector <string> getWords();
 
 	//~WordData();
 };

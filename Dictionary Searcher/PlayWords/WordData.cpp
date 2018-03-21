@@ -86,6 +86,8 @@ void WordData::scrambleWord(string &str) {
 	}
 	//return str;
 }
+
+
 vector<char> WordData::give_char(int n) {
 	int sum = 0;
 	vector<char> vec;
@@ -100,4 +102,13 @@ vector<char> WordData::give_char(int n) {
 		vec.push_back(c + 'A');
 	}
 	return vec;
+}
+
+
+vector<string> WordData::search_word_set(vector<char> chars) {
+		  
+}
+
+vector <string> WordData::getWords() {
+	return words;
 }
