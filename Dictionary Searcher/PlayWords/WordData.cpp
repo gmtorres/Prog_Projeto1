@@ -10,10 +10,14 @@ WordData::WordData()
 	}
 }
 
+
+
 string WordData::getInputf()
 {
 	return WordData::input_file;
 }
+
+
 
 void WordData::LoadWords()
 {
@@ -33,6 +37,8 @@ void WordData::LoadWords()
 void WordData::set_inputFile(string str) {
 	input_file = str;
 }
+
+
 
 bool binarySearch(const  vector<string>  v, string value) {
 	int indice=-1;
@@ -54,6 +60,8 @@ bool binarySearch(const  vector<string>  v, string value) {
 	return true;
 }
 
+
+
 void WordData::makeupper(string &str) {
 	for (int i = 0; i < str.length(); i++)
 	{
@@ -67,3 +75,4 @@ bool WordData::check_Word(string str) {
 	makeupper(str);
 	return binarySearch(words[int(str[0] - 'A')], str);
 }
+
