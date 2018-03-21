@@ -35,9 +35,6 @@
     <Text Include="ficheiro.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="cona3.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dicionario.h">
