@@ -10,10 +10,10 @@ using namespace std;
 class WordData
 {
 private:
-	vector <vector <string>> words;
+	vector <string> words;
 	string input_file = "";
 	
-
+	string randomWord();
 
 public:
 	WordData();

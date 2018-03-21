@@ -4,10 +4,7 @@ using namespace std;
 
 WordData::WordData()
 {
-	for (char c = 'A'; c <= 'Z'; c++) {
-		vector<string> temp;
-		words.push_back(temp);
-	}
+	
 }
 
 string WordData::getInputf()
@@ -24,7 +21,7 @@ void WordData::LoadWords()
 	{
 		while (getline(dic, line))
 		{
-			WordData::words[static_cast<int>(line[0]-'A')].push_back(line);
+			WordData::words.push_back(line);
 		}
 	}
 	dic.close();
@@ -65,5 +62,10 @@ void WordData::makeupper(string &str) {
 
 bool WordData::check_Word(string str) {
 	makeupper(str);
-	return binarySearch(words[int(str[0] - 'A')], str);
+	return binarySearch(words, str);
+}
+
+string WordData::randomWord() {
+	int n = rand() % 26;
+
 }
