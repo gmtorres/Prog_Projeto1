@@ -33,7 +33,7 @@ void WordData::set_inputFile(string str) {
 
 bool binarySearch(const  vector<string>  v, string value) {
 	int indice=-1;
-	for (int bottom = 0, top = v.size(); bottom <= top;) {
+	for (size_t bottom = 0, top = v.size(); bottom <= top;) {
 		int middle = floor((top + bottom) / 2);
 		if (v[middle].compare(value) == 0) {
 			indice = middle;
@@ -66,6 +66,19 @@ bool WordData::check_Word(string str) {
 }
 
 string WordData::randomWord() {
-	int n = rand() % 26;
-	return "penis";
+	if (words.size() < 0)
+		return "";
+	else return words[rand() % words.size()];
+}
+
+void WordData::scrambleWord(string &str) {
+	for (int i = 0; i < str.size() * 2; i++) {
+		int r1, r2;
+		r1 = rand() % str.size();
+		r2 = rand() % str.size();
+		char temp = str[r1];
+		str[r1] = str[r2];
+		str[r2] = temp;
+	}
+	//return str;
 }
