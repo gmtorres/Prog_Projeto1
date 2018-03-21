@@ -67,5 +67,5 @@ bool WordData::check_Word(string str) {
 
 string WordData::randomWord() {
 	int n = rand() % 26;
-
+	return "penis";
 }
