@@ -99,7 +99,7 @@ vector<char> WordData::give_char(int n) {
 		for (int s = 0; s < r; c++) {
 			s += frequency[c];
 		}
-		vec.push_back(c + 'A');
+		vec.push_back(c + 'A'-1);
 	}
 	return vec;
 }
