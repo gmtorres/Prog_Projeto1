@@ -1,5 +1,5 @@
 #pragma once
-#include <iomanip>
+#include <iostream>
 #include <string>
 #include <vector>
 #include <fstream>
@@ -21,7 +21,7 @@ public:
 	void set_inputFile(string str);
 	bool check_Word(string str);
 	void makeupper(string &str);
-	string randomWord();
+	bool randomWord(string &str);
 	void scrambleWord(string &str);
 	vector<char> give_char(int n);
 	vector<string> search_word_set(vector<char> chars);

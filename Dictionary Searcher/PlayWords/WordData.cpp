@@ -5,7 +5,7 @@ using namespace std;
 WordData::WordData()
 {
 	for (char c = 'A'; c <= 'Z'; c++)
-		frequency.push_back(0);
+		frequency.push_back(2);
 }
 
 string WordData::getInputf()
@@ -28,6 +28,9 @@ void WordData::LoadWords()
 			}
 		}
 	}
+	else {
+		cout << "Unable to open file" << endl;
+	}
 	dic.close();
 }
 
@@ -37,7 +40,7 @@ void WordData::set_inputFile(string str) {
 
 bool binarySearch(const  vector<string>  v, string value) {
 	int indice = -1;
-	for (size_t bottom = 0, top = v.size(); bottom <= top;) {
+	for (size_t bottom = 0, top = v.size(); bottom < top;) {
 		int middle = floor((top + bottom) / 2);
 		if (v[middle].compare(value) == 0) {
 			indice = middle;
@@ -69,10 +72,13 @@ bool WordData::check_Word(string str) {
 	return binarySearch(words, str);
 }
 
-string WordData::randomWord() {
-	if (words.size() < 0)
-		return "";
-	else return words[rand() % words.size()];
+bool WordData::randomWord(string &str) {
+	if (words.size() <= 0) {
+	str = "";
+	return false;
+	}
+	str= words[rand() % words.size()];
+	return true;
 }
 
 void WordData::scrambleWord(string &str) {
@@ -94,22 +100,24 @@ vector<char> WordData::give_char(int n) {
 	for (int i = 0; i < frequency.size(); i++)
 		sum += frequency[i];
 	for (int i = 0; i < n; i++) {
-		int r = rand() % sum;
+		long r = (rand() << 15 | rand()) % sum;
 		int c = 0;
-		for (int s = 0; s < r; c++) {
+		for (int s = 0; s <= r; c++) {
 			s += frequency[c];
 		}
-		vec.push_back(c + 'A'-1);
+		vec.push_back(char(c + 'A'-1));
 	}
 	return vec;
 }
 
 
 vector<string> WordData::search_word_set(vector<char> chars) {
+	vector<string> v;
 	for (int i = 0; i < chars.size(); i++)
 	{
 		
 	}
+	return v;
 }
 
 vector <string> WordData::getWords() {
