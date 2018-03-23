@@ -155,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Dic_teste.txt" />
+    <Text Include="penis.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

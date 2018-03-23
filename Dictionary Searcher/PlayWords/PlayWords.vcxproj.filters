@@ -29,5 +29,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Dic_teste.txt" />
+    <Text Include="penis.txt" />
   </ItemGroup>
 </Project>
