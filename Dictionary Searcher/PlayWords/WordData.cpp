@@ -99,19 +99,47 @@ vector<char> WordData::give_char(int n) {
 		for (int s = 0; s < r; c++) {
 			s += frequency[c];
 		}
-		vec.push_back(c + 'A'-1);
+		vec.push_back(c + 'A' - 1);
 	}
 	return vec;
 }
 
 
 vector<string> WordData::search_word_set(vector<char> chars) {
-	for (int i = 0; i < chars.size(); i++)
+	vector<string> out;
+	string palavra;
+	for (int i = 0; i < words.size(); i++)
 	{
-		
+		palavra = words[i];
+		for (int j = 0; j < chars.size(); j++)
+		{
+			if (word_has_char(chars[j], palavra))
+			{
+				if (j == chars.size() - 1)
+					out.push_back(palavra);
+			}
+			else
+				break;
+		}
 	}
+	return out;
 }
 
 vector <string> WordData::getWords() {
 	return words;
+}
+
+bool WordData::word_has_char(char c, string palavra) {
+	for (int i = 0; i < palavra.length(); i++)
+	{
+		if (palavra[i] == c)
+			return true;
+	}
+	return false;
+}
+
+void WordData::rm_duplicates_char_vector(vector <char> &cv)
+{
+	sort(cv.begin(), cv.end());
+	cv.erase(unique(cv.begin(), cv.end()), cv.end());
 }

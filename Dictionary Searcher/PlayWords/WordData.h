@@ -5,6 +5,7 @@
 #include <fstream>
 #include <stdio.h>
 #include <cstring>
+#include <algorithm>
 using namespace std;
 
 class WordData
@@ -26,7 +27,8 @@ public:
 	vector<char> give_char(int n);
 	vector<string> search_word_set(vector<char> chars);
 	vector <string> getWords();
-
+	bool word_has_char(char c, string palavra);
+	void rm_duplicates_char_vector(vector<char> &cv);
 	//~WordData();
 };
 
