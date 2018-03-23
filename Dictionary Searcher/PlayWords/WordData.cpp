@@ -39,12 +39,10 @@ void WordData::set_inputFile(string str) {
 }
 
 bool binarySearch(const  vector<string>  v, string value) {
-	int indice = -1;
-	for (size_t bottom = 0, top = v.size(); bottom < top;) {
+	for (size_t bottom = 0, top = v.size(); bottom <= top;) {
 		int middle = floor((top + bottom) / 2);
 		if (v[middle].compare(value) == 0) {
-			indice = middle;
-			break;
+			return true;
 		}
 		else if (v[middle].compare(value) > 0) {
 			top = middle - 1;
@@ -53,9 +51,7 @@ bool binarySearch(const  vector<string>  v, string value) {
 			bottom = middle + 1;
 		}
 	}
-	if (indice == -1)
-		return false;
-	return true;
+	return false;
 }
 
 void WordData::makeupper(string &str) {
