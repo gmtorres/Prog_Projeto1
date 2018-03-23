@@ -30,5 +30,6 @@
   <ItemGroup>
     <Text Include="Dic_teste.txt" />
     <Text Include="penis.txt" />
+    <Text Include="teste.txt" />
   </ItemGroup>
 </Project>

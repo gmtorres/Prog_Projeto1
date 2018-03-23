@@ -145,3 +145,13 @@ void WordData::rm_duplicates_char_vector(vector <char> &cv)
 	sort(cv.begin(), cv.end());
 	cv.erase(unique(cv.begin(), cv.end()), cv.end());
 }
+
+
+
+int WordData::get_wsize() {
+	return words.size();
+}
+
+string WordData::getword(int i) {
+	return words[i];
+}
