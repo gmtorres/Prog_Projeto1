@@ -11,11 +11,11 @@ using namespace std;
 class WordData
 {
 private:
-	vector <string> words;
 	vector <int > frequency;
 	string input_file = "";
 
 public:
+	vector <string> words;
 	WordData();
 	string getInputf();
 	void LoadWords();
