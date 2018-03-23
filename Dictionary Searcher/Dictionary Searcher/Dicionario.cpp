@@ -39,7 +39,7 @@ void Dicionario::read() {
 		in_file.open(input_file_n);
 		if (in_file.is_open()) {
 			std::string linha;
-			char atual = 'A';
+			int atual = 'A';
 			std::cout << "\nA" << std::endl;
 			int ocorrencias_100 = 0;
 			int outsider = 0;
@@ -53,16 +53,16 @@ void Dicionario::read() {
 							if (outsider > 1) {			//set to 0, 1 would also be a good option because then we are more certain that there was no mistake
 								atual = prim;
 								ocorrencias_100 = 0;
-								std::cout << "\n" << atual << std::endl;
+								std::cout << "\n" << char(atual) << std::endl;
 								outsider = 0;
 							}
 						}
+						while ((ocorrencias_100 + 1) * 100 < words[int(atual - 'A')].size()) {
+							std::cout << ".";
+							ocorrencias_100++;
+						}
 						for (size_t i = 0; i < palavras.size(); i++) {
-							while ((ocorrencias_100 + 1) * 100 < words[int(atual - 'A')].size()) {
-								std::cout << ".";
-								ocorrencias_100++;
-							}
-							simple_words++;
+							//simple_words++;
 							words[int(palavras[i][0] - 'A')].push_back(palavras[i]);
 						}
 					}
@@ -70,6 +70,8 @@ void Dicionario::read() {
 			}
 			std::cout << std::endl;
 			in_file.close();
+			for (size_t i = 0; i < words.size(); i++)
+				simple_words += words[i].size();
 		}
 		else {
 			std::cout << "Unable to open file " << input_file_n << " ." << std::endl;
@@ -112,6 +114,7 @@ size_t Dicionario::get_nUnique() {
 
 std::vector<std::string> Dicionario::get_words(std::string str) { // str é uma 'headline' pode conter mais que uma palavra
 	std::vector<std::string> palavras;
+	/*
 	const int n = 3;
 	const char special[n] = { '-','\'',';' };
 	for (int i = 0; i < str.size(); i++) { //Substitui os carateres especiais (- , \ , ;) por espaços 
@@ -121,13 +124,14 @@ std::vector<std::string> Dicionario::get_words(std::string str) { // str é uma '
 				break;
 			}
 		}
-	}
+	}*/
+	
 	std::string temp = ""; //Guarda a palavra antes de a enviar para o vetor
 	for (int i = 0; i < str.size(); i++) { //Percorre a headline toda
-		if (str[i] == ' ') { // Ao encontrar umm espaço envia a palavra para o vetor
+		if (str[i] == ' ' || str[i] == '-' || str[i] == '\'' || str[i] == ';') { // Ao encontrar umm espaço envia a palavra para o vetor
 			if (!temp.empty()) {
 				palavras.push_back(temp);
-				temp = "";
+				temp.clear();
 			}
 		}
 		else {
@@ -137,6 +141,13 @@ std::vector<std::string> Dicionario::get_words(std::string str) { // str é uma '
 	if (!temp.empty()) {
 		palavras.push_back(temp);
 	}
+	/*
+	std::stringstream line(str);
+	std::string temp = "";
+	while (line >> temp) {
+		palavras.push_back(temp);
+	}
+	*/
 	return palavras;
 }
 
