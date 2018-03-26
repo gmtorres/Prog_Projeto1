@@ -21,7 +21,10 @@ public:
 	WordData(string str);
 	string getword(size_t i);
 	size_t get_wsize();
-	string getInputf();
+	string getInputFile();
+	bool addWord(string str);
+	bool removeWord(string str);
+	void clear();
 	void LoadWords();
 	void set_inputFile(string str);
 	bool check_Word(string str);

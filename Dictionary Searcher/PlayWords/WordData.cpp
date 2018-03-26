@@ -2,6 +2,24 @@
 
 using namespace std;
 
+int binarySearch(const  vector<string>  v, string value) {
+	if (v.size() == 0)
+		return -1;
+	for (int bottom = 0, top = v.size(); bottom <= top;) {
+		int middle = static_cast<int>(floor((top + bottom) / 2));
+		if (v.at(middle).compare(value) == 0) {
+			return middle;
+		}
+		else if (v.at(middle).compare(value) > 0) {
+			top = middle - 1;
+		}
+		else {
+			bottom = middle + 1;
+		}
+	}
+	return -1;
+}
+
 WordData::WordData(){
 	for (char c = 'A'; c <= 'Z'; c++)
 		frequency.push_back(2);
@@ -13,14 +31,46 @@ WordData::WordData(string str) {
 
 }
 
-string WordData::getInputf(){
+string WordData::getInputFile(){
 	return WordData::input_file;
+}
+
+bool WordData::addWord(string str) {
+	makeupper(str);
+	if (!check_Word(str)) {
+		words.push_back(str);
+		sort(words.begin(), words.end());
+		for (size_t i = 0; i < str.length(); i++)
+			frequency[str[i] - 'A']++;
+		return true;
+	}
+	return false;
+}
+bool WordData::removeWord(string str) {
+	makeupper(str);
+	int n = binarySearch(words, str);
+	if (n != -1) {
+		for (size_t i = 0; i < str.length(); i++)
+			frequency[str[i] - 'A']--;
+		for (size_t i = n; i < words.size() - 1; i++)
+			words[i] = words[i + 1];
+		words.resize(words.size() - 1);
+		return true;
+	}
+	return false;
+}
+
+void WordData::clear() {
+	words.clear();
+	for (size_t i = 0; i < frequency.size(); i++) {
+		frequency[i] = 2;
+	}
 }
 
 void WordData::LoadWords(){
 	ifstream dic;
 	string line;
-	dic.open(getInputf());
+	dic.open(getInputFile());
 	if (dic.is_open()){
 		while (getline(dic, line)){
 			WordData::words.push_back(line);
@@ -39,33 +89,18 @@ void WordData::set_inputFile(string str) {
 	input_file = str;
 }
 
-bool binarySearch(const  vector<string>  v, string value) {
-	for (size_t bottom = 0, top = v.size(); bottom <= top;) {
-		int middle = static_cast<int>(floor((top + bottom) / 2));
-		if (v[middle].compare(value) == 0) {
-			return true;
-		}
-		else if (v[middle].compare(value) > 0) {
-			top = middle - 1;
-		}
-		else {
-			bottom = middle + 1;
-		}
-	}
-	return false;
-}
-
 void WordData::makeupper(string &str) {
-	for (size_t i = 0; i < str.length(); i++){
+	for (size_t i = 0; i < str.length(); i++) {
 		str[i] = toupper(str[i]);
 	}
 }
 
 
-
 bool WordData::check_Word(string str) {
 	makeupper(str);
-	return binarySearch(words, str);
+	if (binarySearch(words, str) == -1)
+		return false;
+	return true;
 }
 
 bool WordData::randomWord(string &str) {
