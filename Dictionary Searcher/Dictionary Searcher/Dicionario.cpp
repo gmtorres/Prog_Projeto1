@@ -117,7 +117,7 @@ std::vector<std::string> Dicionario::get_words(std::string str) { // str é uma '
 	/*
 	const int n = 3;
 	const char special[n] = { '-','\'',';' };
-	for (int i = 0; i < str.size(); i++) { //Substitui os carateres especiais (- , \ , ;) por espaços 
+	for (int i = 0; i < str.size(); i++) { //Substitui os carateres especiais (- , \ , ;) por espaços
 		for (int a = 0; a < n; a++) {
 			if (str[i] == special[a]) {
 				str[i] = ' ';
@@ -125,7 +125,7 @@ std::vector<std::string> Dicionario::get_words(std::string str) { // str é uma '
 			}
 		}
 	}*/
-	
+	/*
 	std::string temp = ""; //Guarda a palavra antes de a enviar para o vetor
 	for (int i = 0; i < str.size(); i++) { //Percorre a headline toda
 		if (str[i] == ' ' || str[i] == '-' || str[i] == '\'' || str[i] == ';') { // Ao encontrar umm espaço envia a palavra para o vetor
@@ -139,6 +139,33 @@ std::vector<std::string> Dicionario::get_words(std::string str) { // str é uma '
 		}
 	}
 	if (!temp.empty()) {
+		palavras.push_back(temp);
+	}
+	*/
+	std::string temp = ""; //Guarda a palavra antes de a enviar para o vetor
+	bool w = true;
+	for (int i = 0; i < str.size(); i++) { //Percorre a headline toda
+		if (str[i] == '-' || str[i] == '\'') { // Ao encontrar umm espaço envia a palavra para o vetor
+			w = false;
+		}
+		else if (str[i] == ' ') { // Ao encontrar umm espaço envia a palavra para o vetor
+			if (!temp.empty()) {
+				temp.clear();
+				w = false;
+			}
+		}
+		else if (str[i] == ';') { // Ao encontrar umm espaço envia a palavra para o vetor
+			if (!temp.empty() && w) {
+				palavras.push_back(temp);
+			}
+			temp.clear(); 
+			w = true;
+		}
+		else {
+			temp += str[i];
+		}
+	}
+	if (!temp.empty() && w) {
 		palavras.push_back(temp);
 	}
 	/*
