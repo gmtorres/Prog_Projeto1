@@ -2,28 +2,29 @@
 
 using namespace std;
 
-WordData::WordData()
-{
+WordData::WordData(){
 	for (char c = 'A'; c <= 'Z'; c++)
 		frequency.push_back(2);
 }
+WordData::WordData(string str) {
+	for (char c = 'A'; c <= 'Z'; c++)
+		frequency.push_back(2);
+	set_inputFile(str);
 
-string WordData::getInputf()
-{
+}
+
+string WordData::getInputf(){
 	return WordData::input_file;
 }
 
-void WordData::LoadWords()
-{
+void WordData::LoadWords(){
 	ifstream dic;
 	string line;
 	dic.open(getInputf());
-	if (dic.is_open())
-	{
-		while (getline(dic, line))
-		{
+	if (dic.is_open()){
+		while (getline(dic, line)){
 			WordData::words.push_back(line);
-			for (int i = 0; i < line.length() - 1; i++) {
+			for (size_t i = 0; i < line.length() - 1; i++) {
 				frequency[line[i] - 'A']++;
 			}
 		}
@@ -40,7 +41,7 @@ void WordData::set_inputFile(string str) {
 
 bool binarySearch(const  vector<string>  v, string value) {
 	for (size_t bottom = 0, top = v.size(); bottom <= top;) {
-		int middle = floor((top + bottom) / 2);
+		int middle = static_cast<int>(floor((top + bottom) / 2));
 		if (v[middle].compare(value) == 0) {
 			return true;
 		}
@@ -55,8 +56,7 @@ bool binarySearch(const  vector<string>  v, string value) {
 }
 
 void WordData::makeupper(string &str) {
-	for (int i = 0; i < str.length(); i++)
-	{
+	for (size_t i = 0; i < str.length(); i++){
 		str[i] = toupper(str[i]);
 	}
 }
@@ -73,18 +73,24 @@ bool WordData::randomWord(string &str) {
 	str = "";
 	return false;
 	}
-	str= words[rand() % words.size()];
+	long r = (rand() << 15 | rand()) % words.size();
+	str= words[r];
 	return true;
 }
 
 void WordData::scrambleWord(string &str) {
-	for (int i = 0; i < str.size() * 2; i++) {
-		int r1, r2;
-		r1 = rand() % str.size();
-		r2 = rand() % str.size();
-		char temp = str[r1];
-		str[r1] = str[r2];
-		str[r2] = temp;
+	if (str.length() > 1) {
+		string temp = str;
+		for (size_t t = 0; t < 4 && temp == str; t++) {
+			for (size_t i = 0; i < str.size() * 2; i++) {
+				int r1, r2;
+				r1 = rand() % str.size();
+				r2 = rand() % str.size();
+				char temp = str[r1];
+				str[r1] = str[r2];
+				str[r2] = temp;
+			}
+		}
 	}
 	//return str;
 }
@@ -93,12 +99,12 @@ void WordData::scrambleWord(string &str) {
 vector<char> WordData::give_char(int n) {
 	int sum = 0;
 	vector<char> vec;
-	for (int i = 0; i < frequency.size(); i++)
+	for (size_t i = 0; i < frequency.size(); i++)
 		sum += frequency[i];
-	for (int i = 0; i < n; i++) {
+	for (size_t i = 0; i < n; i++) {
 		long r = (rand() << 15 | rand()) % sum;
 		int c = 0;
-		for (int s = 0; s <= r; c++) {
+		for (size_t s = 0; s <= r; c++) {
 			s += frequency[c];
 		}
 		vec.push_back(char(c + 'A'-1));
@@ -110,48 +116,35 @@ vector<char> WordData::give_char(int n) {
 vector<string> WordData::search_word_set(vector<char> chars) {
 	vector<string> out;
 	string palavra;
-	for (int i = 0; i < words.size(); i++)
-	{
+	for (size_t i = 0; i < words.size(); i++){
 		palavra = words[i];
-		for (int j = 0; j < chars.size(); j++)
-		{
-			if (word_has_char(chars[j], palavra))
-			{
+		for (int j = 0; j < chars.size(); j++){
+			if (word_has_char(chars[j], palavra)){
 				if (j == chars.size() - 1)
 					out.push_back(palavra);
 			}
-			else
-				break;
+			else break;
 		}
 	}
 	return out;
 }
 
-vector <string> WordData::getWords() {
-	return words;
-}
-
 bool WordData::word_has_char(char c, string palavra) {
-	for (int i = 0; i < palavra.length(); i++)
-	{
+	for (size_t i = 0; i < palavra.length(); i++){
 		if (palavra[i] == c)
 			return true;
 	}
 	return false;
 }
 
-void WordData::rm_duplicates_char_vector(vector <char> &cv)
-{
-	sort(cv.begin(), cv.end());
-	cv.erase(unique(cv.begin(), cv.end()), cv.end());
-}
 
 
-
-int WordData::get_wsize() {
+size_t WordData::get_wsize() {
 	return words.size();
 }
 
-string WordData::getword(int i) {
-	return words[i];
+string WordData::getword(size_t i) {
+	if(i<words.size())
+		return words[i];
+	return "";
 }
