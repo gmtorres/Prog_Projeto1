@@ -143,26 +143,32 @@ std::vector<std::string> Dicionario::get_words(std::string str) { // str é uma '
 	}
 	*/
 	std::string temp = ""; //Guarda a palavra antes de a enviar para o vetor
-	bool w = true;
+	bool w = true,space = false;
 	for (int i = 0; i < str.size(); i++) { //Percorre a headline toda
-		if (str[i] == '-' || str[i] == '\'') { // Ao encontrar umm espaço envia a palavra para o vetor
+		if (str.compare("ALFA ; ALFA GRASS")==0) {
+			std::cout << "cona" << std::endl;
+		}
+		if (str[i] == '-' || str[i] == '\'' || str[i] == '\\') { // Ao encontrar umm espaço envia a palavra para o vetor
 			w = false;
+			space = false;
 		}
 		else if (str[i] == ' ') { // Ao encontrar umm espaço envia a palavra para o vetor
 			if (!temp.empty()) {
-				temp.clear();
 				w = false;
 			}
+			space = true;
 		}
 		else if (str[i] == ';') { // Ao encontrar umm espaço envia a palavra para o vetor
-			if (!temp.empty() && w) {
+			if (w || space) {
 				palavras.push_back(temp);
 			}
 			temp.clear(); 
 			w = true;
+			space = false;
 		}
 		else {
 			temp += str[i];
+			space = false;
 		}
 	}
 	if (!temp.empty() && w) {

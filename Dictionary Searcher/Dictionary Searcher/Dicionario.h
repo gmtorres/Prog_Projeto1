@@ -13,7 +13,6 @@ private:
 	std::ifstream in_file;
 	std::ofstream out_file;
 	//std::vector<std::string> words;
-	std::vector<std::vector <std::string>> words;
 	size_t simple_words = 0;
 	size_t unique_words = 0;
 
@@ -21,7 +20,7 @@ private:
 	bool isValid(std::string str);// verifica se uma palavra é valida, se nao contem lowercase letras
 
 public:
-	
+	std::vector<std::vector <std::string>> words;
 	Dicionario();  //Inicializar o objeto sem parametros
 	Dicionario(std::string in_f, std::string out_f); //Inicializar o objeto com os nomes dos ficheiros de entrada e saida
 	void set_input(std::string str); // Atribuir um nome ao ficheiro de entrada
