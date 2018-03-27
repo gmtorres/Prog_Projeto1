@@ -183,3 +183,10 @@ string WordData::getword(size_t i) {
 		return words[i];
 	return "";
 }
+
+void WordData::printw() {
+	for (int i = 0; i < words.size(); i++)
+	{
+		cout << words[i] << endl;
+	}
+}

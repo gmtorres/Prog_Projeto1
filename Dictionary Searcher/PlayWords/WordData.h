@@ -34,6 +34,7 @@ public:
 	vector<char> give_char(int n);
 	vector<string> search_word_set(vector<char> chars);
 	bool word_has_char(char c, string palavra);
+	void printw();
 	//~WordData();
 };
 
