@@ -296,9 +296,7 @@ bool op_f(WordData &wd) {
 		if (kappa == 'y' || kappa == 'Y')
 		{
 			wd.printw();
-			if (wd.get_wsize() > 100) {
-				cout << "Press ENTER to continue: "; cin.get(); cin.get();
-			}
+			cout << "Press ENTER to continue: "; cin.get(); cin.get();
 		}
 		break;
 	}
