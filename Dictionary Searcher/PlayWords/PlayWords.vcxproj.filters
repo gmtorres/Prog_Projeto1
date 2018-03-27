@@ -21,9 +21,15 @@
     <ClCompile Include="WordData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PWMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WordData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PWMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

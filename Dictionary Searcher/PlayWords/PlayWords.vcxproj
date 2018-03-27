@@ -148,9 +148,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="PlayWords.cpp" />
+    <ClCompile Include="PWMenu.cpp" />
     <ClCompile Include="WordData.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PWMenu.h" />
     <ClInclude Include="WordData.h" />
   </ItemGroup>
   <ItemGroup>
