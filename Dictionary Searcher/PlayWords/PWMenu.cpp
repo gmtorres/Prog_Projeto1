@@ -296,16 +296,17 @@ bool op_f(WordData &wd) {
 		if (kappa == 'y' || kappa == 'Y')
 		{
 			wd.printw();
-			cout << "Press ENTER to continue: "; cin.get(); cin.get();
 		}
 		break;
 	}
 	}
+	cout << "Press ENTER to continue: "; cin.get(); cin.get();
 	return true;
 }
 
 bool menu(WordData &wd) {
 	string ch;
+	system("cls");
 	cout << "Choose an option (CTRL + Z to exit):\n\n"
 		<< "a) Check if the word belongs to the word list.\n"
 		<< "b) Guess the word.\n"
@@ -347,5 +348,6 @@ bool menu(WordData &wd) {
 	break;
 	}
 	cout << endl;
+	cout << "Press ENTER to continue: "; cin.get(); cin.get();
 	return true;
 }
