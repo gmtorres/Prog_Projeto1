@@ -5,7 +5,7 @@ using namespace std;
 int binarySearch(const  vector<string>  v, string value) {
 	if (v.size() == 0)
 		return -1;
-	for (int bottom = 0, top = v.size(); bottom <= top;) {
+	for (int bottom = 0, top = v.size()-1; bottom <= top;) {
 		int middle = static_cast<int>(floor((top + bottom) / 2));
 		if (v.at(middle).compare(value) == 0) {
 			return middle;
