@@ -254,7 +254,9 @@ bool op_f(WordData &wd) {
 		cout << "Words file: ";
 		cin >> str;
 		wd.set_inputFile(str);
-		cout << "Loading words...";
+		cout << "Clearing words...\n";
+		wd.clear();
+		cout << "Loading new words...";
 		wd.LoadWords();
 		cout << endl;
 		break;
