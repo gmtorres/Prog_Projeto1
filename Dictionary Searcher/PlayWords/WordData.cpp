@@ -1,6 +1,6 @@
 #include "WordData.h"
 
-using namespace std;
+//using namespace std;
 
 int binarySearch(const  vector<string>  v, string value) {
 	if (v.size() == 0)

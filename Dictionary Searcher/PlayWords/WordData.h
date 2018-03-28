@@ -6,7 +6,14 @@
 #include <stdio.h>
 #include <cstring>
 #include <algorithm>
-using namespace std;
+//using namespace std;
+
+using std::cout;
+using std::cin;
+using std::endl;
+using std::string;
+using std::vector;
+using std::ifstream;
 
 class WordData
 {

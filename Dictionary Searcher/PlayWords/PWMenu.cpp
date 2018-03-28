@@ -2,7 +2,6 @@
 #include "WordData.h"
 
 
-
 bool isalpha_string(string str) {
 	for (size_t i = 0; i < str.length(); i++)
 	{
@@ -52,9 +51,6 @@ void op_a(WordData &wd) {
 		cout << str << " is not in the word list." << endl;
 
 }
-
-
-
 
 
 void op_b(WordData &wd) {
@@ -221,35 +217,45 @@ void op_e(WordData &wd) {
 
 }
 bool op_f(WordData &wd) {
-	string ch;
+	int ch;
+	int y = 0;
 	char kappa = 'y';
-	system("cls");
-	cout << "\nChoose an option (CTRL + Z to go back):\n\n"
-		<< "a) Change words file.\n"
-		<< "b) Add a word.\n"
-		<< "c) Remove a word.\n"
-		<< "d) Clear words.\n"
-		<< "e) Print words.\n\n";
-	cin >> ch;
-	wd.makeupper(ch);
-	if (cin.eof()) {
-		cin.clear();
+	string menu[] = { "a) Change words file.\n"
+		, "b) Add a word.\n"
+		, "c) Remove a word.\n"
+		, "d) Clear words.\n"
+		, "e) Print words.\n"
+		, "f) Exit.\n"
+	};
+	const int menu_size = 6;
+	do {
 		system("cls");
-		return false;
-	}
-	while (cin.fail()) {
-		cout << "Invalid option" << endl;
-		cin.clear();
-		cin.ignore(100000000, '\n');
-		cin >> ch;
-		if (cin.eof()) {
-			cin.clear();
-			return false;
+		cout << "Choose an option (CTRL + Z to exit):\n\n";
+		for (int i = 0; i<menu_size; i++) {
+			if (i == y) {
+				cout << "> ";
+			}
+			else {
+				cout << "  ";
+			}
+			cout << menu[i];
 		}
-	}
-	char cha = ch[0];
+		ch = _getch();
+		if (ch == 0 || ch == 224) {
+			switch (_getch()) {
+			case 72:
+				y = (y - 1 + menu_size) % menu_size;
+				break;
+			case 80:
+				y = (y + 1) % menu_size;
+				break;
+			}
+		}
+	} while (int(ch) != 13);
+;
 	string str;
-	switch (cha) {
+	ch = 'A' + y;
+	switch (ch) {
 	case 'A':
 		system("cls");
 		cout << "Words file: ";
@@ -281,11 +287,10 @@ bool op_f(WordData &wd) {
 		wd.clear();
 		cout << "Words cleared" << endl;
 		break;
-	case 'E': {
+	case 'E': 
 		if (wd.get_wsize() > 100) {
 			cout << "There's " << wd.get_wsize() << " words. This may take a while. Do you want to continue? [y/n] "; cin >> kappa;
 		}
-
 		while (cin.fail() && (kappa != 'N' || kappa != 'n' || kappa != 'Y' || kappa != 'y'))
 		{
 			cout << "Invalid input. " << endl;
@@ -299,42 +304,56 @@ bool op_f(WordData &wd) {
 			wd.printw();
 		}
 		break;
+	case 'F': return false;
+		break;
 	}
+	cout << "Press a key to continue...";
+	_getch();
+	if (ch == 0 || ch == 224) {
+		_getch();
 	}
-	cout << "Press ENTER to continue: "; cin.get(); cin.get();
 	return true;
 }
 
 bool menu(WordData &wd) {
-	string ch;
-	int y=0;
-	system("cls");
-	cout << "Choose an option (CTRL + Z to exit):\n\n"
-		<< "a) Check if the word belongs to the word list.\n"
-		<< "b) Guess the word.\n"
-		<< "c) Given a set show all posivel combinations.\n"
-		<< "d) Given a random set of leters, guess a word.\n"
-		<< "e) Read a word with wildcard caracters and return all possivel sets.\n"
-		<< "f) Options.\n\n";
-	cin >> ch;
-	wd.makeupper(ch);
-	if (cin.eof()) {
-		cin.clear();
-		return false;
-	}
-	while (cin.fail() && (ch != "A" || ch != "B" || ch != "C" || ch != "D" || ch != "E" || ch != "F")) {
-		cout << "Invalid option" << endl;
-		cin.clear();
-		cin.ignore(100000000, '\n');
-		cin >> ch;
-		wd.makeupper(ch);
-		if (cin.eof()) {
-			cin.clear();
-			return false;
+	int ch;
+	int y = 0;
+	string menu[] = { "a) Check if the word belongs to the word list.\n"
+		, "b) Guess the word.\n"
+		, "c) Given a set show all posivel combinations.\n"
+		, "d) Given a random set of leters, guess a word.\n"
+		, "e) Read a word with wildcard caracters and return all possivel sets.\n"
+		, "f) Options.\n" 
+		, "g) Exit.\n"};
+	const int menu_size = 7;
+	do {
+		system("cls");
+		cout << "Choose an option :\n\n";
+		for (int i = 0; i<menu_size; i++) {
+			if (i == y) {
+				cout << "> ";
+			}
+			else {
+				cout << "  ";
+			}
+			cout << menu[i];
 		}
-	}
-	char cha = ch[0];
-	switch (cha) {
+		ch = _getch();
+		if (ch == 0 || ch == 224){
+			switch (_getch()){
+			case 72:
+				y = (y - 1 + menu_size) % menu_size;
+				break;
+			case 80:
+				y = (y + 1) % menu_size;
+				break;
+			}
+		}
+	} while (int(ch) != 13 );
+
+	ch = 'A' + y;
+
+	switch (ch) {
 	case 'A': op_a(wd);
 		break;
 	case 'B': op_b(wd);
@@ -348,8 +367,13 @@ bool menu(WordData &wd) {
 	case 'F':do {
 	} while (op_f(wd));
 	break;
+	case 'G':return false;
+		break;
 	}
-	cout << endl;
-	cout << "Press ENTER to continue: "; cin.get(); cin.get();
+	cout << "Press a key to continue...";
+	_getch();
+	if (ch == 0 || ch == 224) {
+		_getch();
+	}
 	return true;
 }

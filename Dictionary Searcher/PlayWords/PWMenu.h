@@ -5,7 +5,11 @@
 #include <conio.h>
 #include "WordData.h"
 
-using namespace std;
+using std::cout;
+using std::cin;
+using std::endl;
+using std::string;
+
 
 bool isalpha_string(string str);
 bool alfabetico(string str);
