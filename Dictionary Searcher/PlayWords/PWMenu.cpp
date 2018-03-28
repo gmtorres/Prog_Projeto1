@@ -250,6 +250,7 @@ bool op_f(WordData &wd) {
 				y = (y + 1) % menu_size;
 				break;
 			}
+			continue;
 		}
 		if (isalpha(ch)) {
 			char temp = ch;
@@ -270,6 +271,8 @@ bool op_f(WordData &wd) {
 				break;
 			}
 		}
+		if (ch == 27)
+			return false;
 	} while (int(ch) != 13);
 ;
 	string str;
@@ -372,6 +375,7 @@ bool menu(WordData &wd) {
 				y = (y + 1) % menu_size;
 				break;
 			}
+			continue;
 		}
 		if (isalpha(ch)) {
 			char temp = ch;
@@ -392,6 +396,8 @@ bool menu(WordData &wd) {
 				break;
 			}
 		}
+		if (ch == 27)
+			return false;
 	} while (int(ch) != 13 );
 
 	ch = 'A' + y;
@@ -409,6 +415,7 @@ bool menu(WordData &wd) {
 		break;
 	case 'F':do {
 	} while (op_f(wd));
+	return true;
 	break;
 	case 'G':return false;
 		break;
