@@ -230,7 +230,7 @@ bool op_f(WordData &wd) {
 	const int menu_size = 6;
 	do {
 		system("cls");
-		cout << "Choose an option (CTRL + Z to exit):\n\n";
+		cout << "Choose an option :\n\n";
 		for (int i = 0; i<menu_size; i++) {
 			if (i == y) {
 				cout << "> ";
