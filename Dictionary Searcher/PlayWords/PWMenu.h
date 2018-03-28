@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <iomanip>
+#include <conio.h>
 #include "WordData.h"
 
 using namespace std;

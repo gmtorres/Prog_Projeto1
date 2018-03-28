@@ -2,6 +2,7 @@
 #include "WordData.h"
 
 
+
 bool isalpha_string(string str) {
 	for (size_t i = 0; i < str.length(); i++)
 	{
@@ -306,6 +307,7 @@ bool op_f(WordData &wd) {
 
 bool menu(WordData &wd) {
 	string ch;
+	int y=0;
 	system("cls");
 	cout << "Choose an option (CTRL + Z to exit):\n\n"
 		<< "a) Check if the word belongs to the word list.\n"
