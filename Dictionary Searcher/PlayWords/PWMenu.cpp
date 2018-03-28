@@ -254,9 +254,7 @@ bool op_f(WordData &wd) {
 		cout << "Words file: ";
 		cin >> str;
 		wd.set_inputFile(str);
-		cout << "Clearing words...\n";
-		wd.clear();
-		cout << "Loading new words...";
+		cout << "Loading words...";
 		wd.LoadWords();
 		cout << endl;
 		break;
@@ -350,8 +348,6 @@ bool menu(WordData &wd) {
 	break;
 	}
 	cout << endl;
-	if (cha != 'F') {
-		cout << "Press ENTER to continue: "; cin.get(); cin.get();
-	}
+	cout << "Press ENTER to continue: "; cin.get(); cin.get();
 	return true;
 }
