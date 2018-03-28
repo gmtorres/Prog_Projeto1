@@ -348,6 +348,8 @@ bool menu(WordData &wd) {
 	break;
 	}
 	cout << endl;
-	cout << "Press ENTER to continue: "; cin.get(); cin.get();
+	if (cha != 'F') {
+		cout << "Press ENTER to continue: "; cin.get(); cin.get();
+	}
 	return true;
 }
