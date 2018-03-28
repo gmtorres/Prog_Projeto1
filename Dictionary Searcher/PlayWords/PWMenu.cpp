@@ -251,6 +251,25 @@ bool op_f(WordData &wd) {
 				break;
 			}
 		}
+		if (isalpha(ch)) {
+			char temp = ch;
+			temp = toupper(temp);
+			if (temp == 'A' || temp == 'B' || temp == 'C' || temp == 'D' || temp == 'E' || temp == 'F') {
+				y = temp - 'A';
+				system("cls");
+				cout << "Choose an option :\n\n";
+				for (int i = 0; i<menu_size; i++) {
+					if (i == y) {
+						cout << "> ";
+					}
+					else {
+						cout << "  ";
+					}
+					cout << menu[i];
+				}
+				break;
+			}
+		}
 	} while (int(ch) != 13);
 ;
 	string str;
@@ -288,20 +307,25 @@ bool op_f(WordData &wd) {
 		cout << "Words cleared" << endl;
 		break;
 	case 'E': 
-		if (wd.get_wsize() > 100) {
-			cout << "There's " << wd.get_wsize() << " words. This may take a while. Do you want to continue? [y/n] "; cin >> kappa;
-		}
-		while (cin.fail() && (kappa != 'N' || kappa != 'n' || kappa != 'Y' || kappa != 'y'))
-		{
-			cout << "Invalid input. " << endl;
-			cin.clear();
-			cin.ignore(100000000, '\n');
-			cin >> kappa;
-		}
+		if (wd.get_wsize() != 0) {
+			if (wd.get_wsize() > 100) {
+				cout << "There's " << wd.get_wsize() << " words. This may take a while. Do you want to continue? [y/n] "; cin >> kappa;
+			}
+			while (cin.fail() && (kappa != 'N' || kappa != 'n' || kappa != 'Y' || kappa != 'y'))
+			{
+				cout << "Invalid input. " << endl;
+				cin.clear();
+				cin.ignore(100000000, '\n');
+				cin >> kappa;
+			}
 
-		if (kappa == 'y' || kappa == 'Y')
-		{
-			wd.printw();
+			if (kappa == 'y' || kappa == 'Y')
+			{
+				wd.printw();
+			}
+		}
+		else {
+			cout << "No words to show." << endl;
 		}
 		break;
 	case 'F': return false;
@@ -346,6 +370,25 @@ bool menu(WordData &wd) {
 				break;
 			case 80:
 				y = (y + 1) % menu_size;
+				break;
+			}
+		}
+		if (isalpha(ch)) {
+			char temp = ch;
+			temp = toupper(temp);
+			if (temp == 'A' || temp == 'B' || temp == 'C' || temp == 'D' || temp == 'E' || temp == 'F' || temp == 'G') {
+				y = temp - 'A';
+				system("cls");
+				cout << "Choose an option :\n\n";
+				for (int i = 0; i<menu_size; i++) {
+					if (i == y) {
+						cout << "> ";
+					}
+					else {
+						cout << "  ";
+					}
+					cout << menu[i];
+				}
 				break;
 			}
 		}

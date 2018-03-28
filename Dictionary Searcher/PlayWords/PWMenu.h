@@ -3,6 +3,7 @@
 #include <iostream>
 #include <iomanip>
 #include <conio.h>
+#include <ctype.h>
 #include "WordData.h"
 
 using std::cout;
