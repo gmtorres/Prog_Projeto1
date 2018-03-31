@@ -80,7 +80,7 @@ void WordData::LoadWords(){
 		}
 	}
 	else {
-		cout << "Unable to open file" << endl;
+		cout << "Unable to open file ." << endl;
 	}
 	dic.close();
 }

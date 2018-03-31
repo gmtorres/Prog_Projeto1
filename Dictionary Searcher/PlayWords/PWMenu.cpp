@@ -218,7 +218,7 @@ void op_e(WordData &wd) {
 }
 bool op_f(WordData &wd) {
 	int ch;
-	int y = 0;
+	static int y = 0;
 	char kappa = 'y';
 	string menu[] = { "a) Change words file.\n"
 		, "b) Add a word.\n"
@@ -283,9 +283,8 @@ bool op_f(WordData &wd) {
 		cout << "Words file: ";
 		cin >> str;
 		wd.set_inputFile(str);
-		cout << "Loading words...";
+		cout << "Loading words...\n";
 		wd.LoadWords();
-		cout << endl;
 		break;
 	case 'B':
 		cout << "Word to add: ";
@@ -307,7 +306,7 @@ bool op_f(WordData &wd) {
 		break;
 	case 'D':
 		wd.clear();
-		cout << "Words cleared" << endl;
+		cout << "Words cleared." << endl;
 		break;
 	case 'E': 
 		if (wd.get_wsize() != 0) {
@@ -344,7 +343,7 @@ bool op_f(WordData &wd) {
 
 bool menu(WordData &wd) {
 	int ch;
-	int y = 0;
+	static int y = 0;
 	string menu[] = { "a) Check if the word belongs to the word list.\n"
 		, "b) Guess the word.\n"
 		, "c) Given a set show all posivel combinations.\n"
