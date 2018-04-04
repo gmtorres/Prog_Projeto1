@@ -67,7 +67,7 @@ void WordData::clear() {
 	}
 }
 
-void WordData::LoadWords(){
+bool WordData::LoadWords(){
 	ifstream dic;
 	string line;
 	dic.open(getInputFile());
@@ -81,8 +81,10 @@ void WordData::LoadWords(){
 	}
 	else {
 		cout << "Unable to open file" << endl;
+		return false;
 	}
 	dic.close();
+	return true;
 }
 
 void WordData::set_inputFile(string str) {

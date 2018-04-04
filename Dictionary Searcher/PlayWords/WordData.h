@@ -26,7 +26,7 @@ public:
 	bool addWord(string str);
 	bool removeWord(string str);
 	void clear();
-	void LoadWords();
+	bool LoadWords();
 	void set_inputFile(string str);
 	bool check_Word(string str);
 	void makeupper(string &str);

@@ -360,6 +360,7 @@ bool menu(WordData &wd) {
 		break;
 	case 'F':do {
 	} while (op_f(wd));
+	return true;
 	break;
 	}
 	cout << endl;

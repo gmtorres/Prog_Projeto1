@@ -20,12 +20,13 @@ int main()
 	srand(static_cast<unsigned int>(time(0)));
 	WordData wd;
 	string str;
-	cout << "Words file: "; cin >> str;
-	wd.set_inputFile(str);
-	cout << "Loading words...";
-	wd.LoadWords();
+	do {
+		cout << "Words file: "; cin >> str;
+		wd.set_inputFile(str);
+		cout << "Loading words...";
+	} while (!wd.LoadWords());
 	cout << endl;
-	system("cls");
+	//system("cls");
 	//getch();
 	do {
 	} while (menu(wd));
