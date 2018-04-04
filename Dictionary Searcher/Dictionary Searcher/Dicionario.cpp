@@ -82,6 +82,8 @@ void Dicionario::read() {
 //-------------------------------------------------------------------------------------------------------------------------
 
 bool Dicionario::isValid(std::string str) {
+	if (str.length() == 0)
+		return false;
 	for (int i = 0; i < str.length(); i++) {
 		int c = int(str[i]);
 		if ((c < 65 || c>90) && c != ' ' && c != ';' && c != '-' && c != '\'')
@@ -108,6 +110,14 @@ size_t  Dicionario::get_nSimple() {
 
 size_t Dicionario::get_nUnique() {
 	return unique_words;
+}
+
+bool checkWord(std::string str) {
+
+	for(int i = 0;i<str.length();i++)
+		if (str[i] == '-' || str[i] == '\'' || str[i] == '\\')
+			return false;
+	return true;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -142,12 +152,10 @@ std::vector<std::string> Dicionario::get_words(std::string str) { // str é uma '
 		palavras.push_back(temp);
 	}
 	*/
+	
 	std::string temp = ""; //Guarda a palavra antes de a enviar para o vetor
 	bool w = true,space = false;
 	for (int i = 0; i < str.size(); i++) { //Percorre a headline toda
-		if (str.compare("ALFA ; ALFA GRASS")==0) {
-			std::cout << "cona" << std::endl;
-		}
 		if (str[i] == '-' || str[i] == '\'' || str[i] == '\\') { // Ao encontrar umm espaço envia a palavra para o vetor
 			w = false;
 			space = false;
@@ -174,13 +182,25 @@ std::vector<std::string> Dicionario::get_words(std::string str) { // str é uma '
 	if (!temp.empty() && w) {
 		palavras.push_back(temp);
 	}
+	
 	/*
 	std::stringstream line(str);
 	std::string temp = "";
 	while (line >> temp) {
 		palavras.push_back(temp);
 	}
-	*/
+	
+	std::size_t found = str.find_first_of(";");
+	while (found != std::string::npos) {
+		std::string temp = str.substr(0, found);
+		if (checkWord(temp))
+			palavras.push_back(temp);
+		str = str.substr(found+1, str.length());
+		found = str.find_first_of(";");
+	}
+	if(checkWord(str))
+		palavras.push_back(str);
+		*/
 	return palavras;
 }
 
