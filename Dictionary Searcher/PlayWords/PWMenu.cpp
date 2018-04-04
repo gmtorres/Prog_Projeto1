@@ -6,7 +6,7 @@
 // windows code goes here
 #define CLEAR "cls"
 #else
-#error "OS NOT SUPPORTED BITCH"
+#error "OS NOT SUPPORTED"
 #endif
 
 
