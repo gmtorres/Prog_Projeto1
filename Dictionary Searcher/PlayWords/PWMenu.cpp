@@ -1,3 +1,16 @@
+
+#ifdef __linux__ 
+// linux code goes here
+#define CLEAR "clear"
+#elif _WIN32
+// windows code goes here
+#define CLEAR "cls"
+#else
+#error "OS NOT SUPPORTED BITCH"
+#endif
+
+
+
 #include "PWMenu.h"
 #include "WordData.h"
 
@@ -222,7 +235,7 @@ void op_e(WordData &wd) {
 bool op_f(WordData &wd) {
 	string ch;
 	char kappa = 'y';
-	system("cls");
+	system(CLEAR);
 	cout << "\nChoose an option (CTRL + Z to go back):\n\n"
 		<< "a) Change words file.\n"
 		<< "b) Add a word.\n"
@@ -233,7 +246,7 @@ bool op_f(WordData &wd) {
 	wd.makeupper(ch);
 	if (cin.eof()) {
 		cin.clear();
-		system("cls");
+		system(CLEAR);
 		return false;
 	}
 	while (cin.fail()) {
@@ -250,7 +263,7 @@ bool op_f(WordData &wd) {
 	string str;
 	switch (cha) {
 	case 'A':
-		system("cls");
+		system(CLEAR);
 		cout << "Words file: ";
 		cin >> str;
 		wd.set_inputFile(str);
@@ -306,7 +319,7 @@ bool op_f(WordData &wd) {
 
 bool menu(WordData &wd) {
 	string ch;
-	system("cls");
+	system(CLEAR);
 	cout << "Choose an option (CTRL + Z to exit):\n\n"
 		<< "a) Check if the word belongs to the word list.\n"
 		<< "b) Guess the word.\n"
