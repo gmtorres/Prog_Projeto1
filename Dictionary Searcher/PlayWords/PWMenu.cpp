@@ -1,5 +1,5 @@
 
-#ifdef __linux__ 
+#ifdef __unix__ 
 // linux code goes here
 #define CLEAR "clear"
 #elif _WIN32
