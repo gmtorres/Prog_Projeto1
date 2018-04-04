@@ -13,6 +13,8 @@
 
 #include "PWMenu.h"
 #include "WordData.h"
+#include <limits.h>
+#include <cmath>
 
 
 bool isalpha_string(string str) {
